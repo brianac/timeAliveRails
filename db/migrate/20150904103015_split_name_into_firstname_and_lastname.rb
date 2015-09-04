@@ -10,14 +10,7 @@ class SplitNameIntoFirstnameAndLastname < ActiveRecord::Migration
 
     remove_column :users, :name
   end
-end
 
-def down # Merge first and last into name
-    add_column :people, :name, :string
-    Person.all.each do |person|
-      person.update_column(:name, [person.attributes["first_name"].to_s, person.attributes["last_name"].to_s].reject(&:blank?).join(" "))
-      person.save(:validate => false)
-    end
-    remove_column :people, :first_name
-    remove_column :people, :last_name
-  end
+
+
+end

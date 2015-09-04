@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     birth = Date.new(dob.year, dob.month, dob.day)
     now = DateTime.now
 
-    (now - birth).to_i
+    ((now - birth)/1.03).to_i
   end
   helper_method :calculate_days_alive
 
@@ -78,6 +78,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :dob, :created_at)
+      params.require(:user).permit(:first_name, :last_name, :name, :dob, :created_at)
     end
 end
